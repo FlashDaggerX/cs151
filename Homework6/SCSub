@@ -1,0 +1,5 @@
+# SConstruct sub
+Import('env')
+
+env.bin_source = env.Java( target = env.target_folder, source = env.source_folder )
+env.Jar( target = env.bin_target, source = [ env.bin_source, env.bin_manifest ])

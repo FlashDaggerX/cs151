@@ -1,0 +1,54 @@
+// size = 5;
+for (int y = 0; y < size; y++) {
+    for (int x = 0; x < (size * 2 - 1); x++) {
+        
+        int del = x < 5 ? 
+            (x + y + 6) / (size * 2) : 
+            (x - y + 5) / (size);
+
+        if (del == 1) System.out.print('*');
+        else System.out.print(' ');
+        
+    }
+
+    System.out.println();
+}
+
+Output:
+    *    
+   ***   
+  *****  
+ ******* 
+*********
+
+
+// size = 5;
+// Works for any triangle (PLEASE SIMPLIFY)
+
+    // Create a small bit buffer. A bool was chosen because there
+    // can only be two characters.
+    boolean[][] buffer = new boolean[size][size * 2];
+
+    int mid = size;
+    int dist_counter = 0;
+
+    for (int y = 0; y < size; y++)
+    {
+        for (int x = -dist_counter; x <= dist_counter; x++)
+        {
+            buffer[y][mid - x] = true;
+        }
+
+        dist_counter++;
+    }
+
+    for (int y = 0; y < buffer.length; y++)
+    {
+        for (int x = 0; x < buffer[y].length; x++)
+        {
+            if (buffer[y][x]) System.out.print('*');
+            else System.out.print(' ');
+        }
+
+        System.out.println();
+    }

@@ -1,0 +1,37 @@
+public class RomanNumeralTest
+{
+    public static void main(String[] args) 
+    {
+        // Check for argument length
+        if (args.length != 1) {
+            System.out.println("One and one argument only must be provided: A positive number!");
+            return;
+        }
+
+        // The range for which this program runs
+        final int MINIMUM = 1;
+        final int MAXIMUM = 3999;
+
+        int number = Integer.parseInt(args[0]);
+
+        if (number < MINIMUM || number > MAXIMUM)
+            return;
+
+        // A lookup table for all possible roman numerical values
+        final String[] RN_ONES = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+        final String[] RN_TENS = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "LC" };
+        final String[] RN_HUND = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+        final String[] RN_THOU = { "", "M", "MM", "MMM" };
+
+        // The result string, parsed by obtaining each digit and
+        // matching it to the index in the lookup table
+        StringBuilder result = new StringBuilder()
+                .append(RN_THOU[(int) number / 1000])
+                .append(RN_HUND[(int) number % 1000 / 100])
+                .append(RN_TENS[(int) number % 100 / 10])
+                .append(RN_ONES[(int) number % 10]);
+
+        // Print out the result using the StringBuilder's result
+        System.out.println(result.toString());
+    }
+}
